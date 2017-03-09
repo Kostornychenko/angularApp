@@ -1,10 +1,12 @@
-angularApp.controller("addCtrl", function ($scope) {
-    $scope.list = data;
+angularApp.controller("addCtrl", function ($scope, customService) {
+    $scope.list = customService;
 
-    $scope.addItem = function (name, desc, price) {
-        price = parseFloat(price);
-        if(name != "" && !isNaN(price)) {
-            $scope.list.items.push({name: name, desc: desc, price: price});
+    $scope.addItem = function (new_el, addForm) {
+        if(addForm.$valid) {
+            $scope.list.items.push({
+                name: new_el.name,
+                desc: new_el.desc,
+                price: new_el.price});
         }
     }
 });

@@ -1,3 +1,3 @@
-angularApp.controller("listCtrl", function ($scope) {
-    $scope.list = data;
+angularApp.controller("listCtrl", function ($scope, customService) {
+    $scope.list = customService;
 });

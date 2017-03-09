@@ -1,7 +1,7 @@
-angularApp.controller("indexCtrl", function ($scope) {
+angularApp.controller("indexCtrl", function ($scope, customService) {
     $scope.headstyle = {color: 'green'};
     $scope.addform = "addform";
-    $scope.show = false;
     $scope.dark = "dark";
-    $scope.list = data;
+
+    $scope.list = customService;
 });
