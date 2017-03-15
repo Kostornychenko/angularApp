@@ -5,14 +5,15 @@
     <title>AngularApp</title>
     <link rel="stylesheet" href="public/css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="js/lib/angular.min.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/controllers/indexCtrl.js"></script>
-    <script src="js/controllers/listCtrl.js"></script>
-    <script src="js/controllers/addCtrl.js"></script>
-    <script src="js/directives/customList.js"></script>
-    <script src="js/filters/customFilter.js"></script>
-    <script src="js/services/customService.js"></script>
+    <script src="app/lib/angular.min.js"></script>
+    <script src="app/lib/angular-sanitize.min.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/controllers/indexCtrl.js"></script>
+    <script src="app/controllers/listCtrl.js"></script>
+    <script src="app/controllers/addCtrl.js"></script>
+    <script src="app/directives/customList.js"></script>
+    <script src="app/filters/customFilter.js"></script>
+    <script src="app/services/customService.js"></script>
 </head>
 <body>
 <div ng-controller="indexCtrl" class="wrap">
@@ -38,7 +39,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-8">
-                    <button class="btn btn-default" ng-click="addItem(new, addForm)">Add</button>
+                    <button class="btn btn-success" ng-click="addItem(new, addForm)">Add</button>
                 </div>
             </div>
         </form>
@@ -53,17 +54,26 @@
             <th>Name</th>
             <th>Desc</th>
             <th>Price</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-class-even="dark" ng-repeat="item in list.items | orderBy: 'price'">
+        <tr ng-class-even="dark" ng-repeat="item in list.items">
             <td>{{item.name | uppercase}}</td>
             <td>{{item.desc | customFilter}}</td>
             <td>{{item.price | number:5}}</td>
+            <td><button class="btn btn-danger" ng-click="deleteItem(item.name)">Delete</button></td>
         </tr>
         </tbody>
     </table>
-    <div custom-list></div>
+    <div custom-list value="{{list.items}}"></div>
+
+    <!-- пример замены потенциально опасных символов в эскейп-последовательность -->
+    <!--<textarea ng-model="sce_code"></textarea>
+    <p ng-bind-html="sce_code"></p>
+
+    <textarea ng-model="san_code"></textarea>
+    <p ng-bind-html="san_code"></p>-->
 </div>
 </body>
 </html>
