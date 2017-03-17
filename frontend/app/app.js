@@ -1,1 +1,1 @@
-var angularApp = angular.module("angularApp", ["ngSanitize"]);
+var angularApp = angular.module("angularApp", ["ngRoute"]);

@@ -8,7 +8,7 @@ angularApp.controller("addCtrl", function ($scope, $http) {
                 price: new_el.price
             };
             $scope.list.items.push(new_element);
-
+            /**/
             var data = {
                 action:"add",
                 element:new_element
