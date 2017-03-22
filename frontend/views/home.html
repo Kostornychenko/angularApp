@@ -1,3 +1,6 @@
 <label><input type="checkbox" ng-model="desc">Show/Hide</label>
 <div ng-hide="desc" class="alert alert-success">Description AngularApp</div>
-<div custom-list="" value="{{list.items}}"></div>
+<div class="col-sm-3">
+    <input class="form-control inp" type="number" ng-model="inp">
+    <div custom-directive="" value="{{[list.items, inp]}}"></div>
+</div>

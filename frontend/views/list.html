@@ -1,14 +1,18 @@
+<ng-include src="'frontend/views/head.html'"></ng-include>
 <table ng-controller="listCtrl" class="table table-striped">
     <thead>
     <tr>
-        <th>Name</th>
-        <th>Desc</th>
-        <th>Price</th>
+        <th>ID</th>
+        <th>Name<br><input type="text" class="form-control" ng-model="search.name"></th>
+        <th>Desc<br><input type="text" class="form-control" ng-model="search.desc"></th>
+        <th width="20%">Price<br><input type="text" class="form-control" ng-model="search.price"></th>
         <th>Action</th>
     </tr>
+
     </thead>
     <tbody>
-    <tr ng-class-even="dark" ng-repeat="item in list.items">
+    <tr ng-class-even="dark" ng-repeat="item in list.items | filter : searchMyname">
+        <td>{{item.id}}</td>
         <td>{{item.name | uppercase}}</td>
         <td>{{item.desc | customFilter}}</td>
         <td>{{item.price | number:5}}</td>

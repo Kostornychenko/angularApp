@@ -1,32 +1,32 @@
-angularApp.controller("addCtrl", function ($scope, $http) {
+angularApp.controller("addCtrl", function ($scope, customService, alertService) {
+
+    function getNextId() {
+        if ($scope.list.items.length == 0) {
+            return 1
+        } else {
+            return $scope.list.items[$scope.list.items.length - 1].id + 1
+        }
+    }
 
     $scope.addItem = function (new_el, addForm) {
         if(addForm.$valid) {
             var new_element = {
+                id: getNextId(),
                 name: new_el.name,
                 desc: new_el.desc,
                 price: new_el.price
             };
             $scope.list.items.push(new_element);
+
             /**/
-            var data = {
+            var request = {
                 action:"add",
                 element:new_element
-            };
+            }
+
             /*отправка нового елемента в модель*/
-            $http({
-                method: 'POST',
-                url: "../backend/model.php",
-                data: data
-            }).then(function (data) {
-                var element = angular.element("<p class='alert'></p>");
-                if (data) {
-                    element.addClass("alert-info").text("Element added");
-                } else {
-                    element.addClass("alert-danger").text("Element NOT added");
-                }
-                var parent = angular.element(document.querySelector("form"));
-                parent.append(element);
+            customService.load(request).then(function (response) {
+                alertService.show(response, document.querySelector("form"), "added")
             })
         }
     }

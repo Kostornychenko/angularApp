@@ -1,10 +1,11 @@
-angularApp.controller("indexCtrl", function ($scope, $http) {
+angularApp.controller("indexCtrl", function ($scope, customService) {
     $scope.headstyle = {color: 'green'};
     $scope.addform = "addform";
     $scope.dark = "dark";
 
+    $scope.inp = 100;
     /* получение данных из модели, можно один раз, так как вложеные контроллеры */
-    $http({method:"POST", url:"../backend/model.php"}).then(function (data) {
-        $scope.list = data.data;
+    customService.load().then(function (response) {
+        $scope.list = response.data;
     });
 });
