@@ -11,7 +11,7 @@
 
     </thead>
     <tbody>
-    <tr ng-class-even="dark" ng-repeat="item in list.items | filter : searchMyname">
+    <tr ng-class-even="dark" ng-repeat="item in list.items | filter : search">
         <td>{{item.id}}</td>
         <td>{{item.name | uppercase}}</td>
         <td>{{item.desc | customFilter}}</td>
